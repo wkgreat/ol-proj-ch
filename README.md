@@ -37,7 +37,7 @@ current version only supports `GCJ02`
 import GCJ02 from 'ol-proj-ch'
 import {transform} from 'ol/proj'
 const coords = [117.0,32.0];
-const newCoords = transform([coords, GCJ02.CODE, "EPSG:4326");
+const newCoords = transform(coords, GCJ02.CODE, "EPSG:4326");
 ```
 likewise, use `transform([coords, "EPSG:4326", GCJ02.CODE)` from wgs84 to gcj02
 
@@ -47,7 +47,7 @@ likewise, use `transform([coords, "EPSG:4326", GCJ02.CODE)` from wgs84 to gcj02
 import GCJ02 from 'ol-proj-ch'
 import {transform} from 'ol/proj'
 const coords = [117.0,32.0];
-const newCoords = transform([coords, GCJ02.CODE, "EPSG:3857");
+const newCoords = transform(coords, GCJ02.CODE, "EPSG:3857");
 ```
 likewise, use `transform([coords, "EPSG:3857", GCJ02.CODE)` from EPSG:3827 to gcj02
 
