@@ -34,7 +34,7 @@ current version only supports `GCJ02`
 # Usage:
 * transform a coordinate from gcj02 to wgs84(EPSG:4326)
 ```javascript
-import GCJ02 from 'ol-proj-ch'
+import {GCJ02} from 'ol-proj-ch'
 import {transform} from 'ol/proj'
 const coords = [117.0,32.0];
 const newCoords = transform(coords, GCJ02.CODE, "EPSG:4326");
@@ -44,7 +44,7 @@ likewise, use `transform([coords, "EPSG:4326", GCJ02.CODE)` from wgs84 to gcj02
 
 * transform a coordinate from gcj02 to EPSG:3857
 ```javascript
-import GCJ02 from 'ol-proj-ch'
+import {GCJ02} from 'ol-proj-ch'
 import {transform} from 'ol/proj'
 const coords = [117.0,32.0];
 const newCoords = transform(coords, GCJ02.CODE, "EPSG:3857");
@@ -53,7 +53,7 @@ likewise, use `transform([coords, "EPSG:3857", GCJ02.CODE)` from EPSG:3827 to gc
 
 * eg: create feature from geojson data of GCJ02
 ```javascript
-import GCJ02 from 'ol-proj-ch'
+import {GCJ02} from 'ol-proj-ch'
 import {GeoJSON} from "ol/format";
 
 //geojson data pretend coordinates are in GCJ02
@@ -77,7 +77,7 @@ let feature = format.readFeature(data, {
 ```
 * eg: visulaize vector data from wkt with gcj02 data projection
 ```javascript
-import GCJ02 from 'ol-proj-ch'
+import {GCJ02} from 'ol-proj-ch'
 import WKT from "ol/format/WKT";
 
 //WKT data
