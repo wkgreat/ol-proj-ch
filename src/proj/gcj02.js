@@ -21,20 +21,38 @@ import {PROJECTIONS as EPSG4326_PROJECTIONS} from 'ol/proj/epsg4326';
 
 import {addEquivalentProjections, addEquivalentTransforms} from 'ol/proj';
 
+/**
+ * radius of WGS84 ellipsoid
+ * @const
+ * @type {number}
+ * */
 export const RADIUS = 6378137;
 
 /**
- * FIXME confirm this extent
+ * extent of gcj02
  * @const
  * @type {number[]}
  * */
 export const EXTENT = [73.62, 18.11, 134.77, 53.56];
 
-
+/**
+ * coefficient between degree and radian
+ * @const
+ * @type {number}
+ * */
 export const METERS_PER_UNIT = (Math.PI * RADIUS) / 180;
 
+/**
+ * @classdesc
+ * Projection object definition of GCJ02
+ * */
 class GCJ02Projection extends Projection {
 
+  /**
+   * @constructor
+   * @param {string} code of gcj02
+   * @param {string=} opt_axisOrientation Axis orientation.
+   * */
   constructor(code, opt_axisOrientation) {
     super({
       code: code,
@@ -50,27 +68,58 @@ class GCJ02Projection extends Projection {
 }
 
 /**
- * default code of gcj02
+ * default code of gcj02, used as identifier of gcj02
+ * @const
+ * @type {string}
  * */
 export const CODE = 'GCJ02';
 
+/**
+ * all code of GCJ02Projection, 'GCJ02', 'GCJ:02' and 'ZH:MARS'
+ * @const
+ * @type {GCJ02Projection[]}
+ * */
 export const PROJECTIONS = [
   new GCJ02Projection(CODE),
   new GCJ02Projection('GCJ:02'),
   new GCJ02Projection('ZH:MARS')
 ];
 
+/**
+ * transform coordinate from GCJ02 to EPSG:3857
+ * @function
+ * @param {number[]} input input coordinate
+ * @param {number[]} opt_output output coordinate
+ * @param {number} opt_dimension dimension of coordinate
+ * @return {number[]} tranformed coordinate
+ * */
 export function toEPSG3857(input, opt_output, opt_dimension) {
   const the4326 = toEPSG4326(input, opt_output, opt_dimension);
   return from4326to3857(the4326, opt_output, opt_dimension);
 }
 
+/**
+ * transform coordinate from EPSG:3857 to GCJ02
+ * @function
+ * @param {number[]} input input coordinate
+ * @param {number[]} opt_output output coordinate
+ * @param {number} opt_dimension dimension of coordinate
+ * @return {number[]} tranformed coordinate
+ * */
 export function fromEPSG3857(input, opt_output, opt_dimension) {
   const the4326 = from3857to4326(input, opt_output, opt_dimension);
   return fromEPSG4326(the4326, opt_output, opt_dimension);
 
 }
 
+/**
+ * transform coordinate from GCJ02 to EPSG:4326
+ * @function
+ * @param {number[]} input input coordinate
+ * @param {number[]} opt_output output coordinate
+ * @param {number} opt_dimension dimension of coordinate
+ * @return {number[]} tranformed coordinate
+ * */
 export function toEPSG4326(input, opt_output, opt_dimension) {
   const length = input.length;
   const dimension = opt_dimension > 1 ? opt_dimension : 2;
@@ -92,6 +141,14 @@ export function toEPSG4326(input, opt_output, opt_dimension) {
 }
 
 
+/**
+ * transform coordinate from EPSG:4326 to GCJ02
+ * @function
+ * @param {number[]} input input coordinate
+ * @param {number[]} opt_output output coordinate
+ * @param {number} opt_dimension dimension of coordinate
+ * @return {number[]} tranformed coordinate
+ * */
 export function fromEPSG4326(input, opt_output, opt_dimension) {
   const length = input.length;
   const dimension = opt_dimension > 1 ? opt_dimension : 2;
@@ -112,7 +169,13 @@ export function fromEPSG4326(input, opt_output, opt_dimension) {
   return output;
 }
 
-export function gcj2WGSExactly(coord) {
+/**
+ * transform coordinate from GCJ02 to EPSG:4326, this algorithm is more precise.
+ * @function
+ * @param {number[]} coord coordinate
+ * @return {number[]} tranformed coordinate
+ * */
+export function gcj02WGSExactly(coord) {
   const gcjLon = coord[0], gcjLat = coord[1];
   const initDelta = 0.01;
   const threshold = 0.000000001;
@@ -148,6 +211,12 @@ export function gcj2WGSExactly(coord) {
   return [wgsLon, wgsLat];
 }
 
+/**
+ * transform coordinate from EPSG:4326 to GCJ02
+ * @function
+ * @param {number[]} coord coordinate
+ * @return {number[]} tranformed coordinate
+ * */
 export function wgs2GCJ(coord) {
   const wgLon = coord[0], wgLat = coord[1];
   if (outOfChina(coord)) {
@@ -157,6 +226,12 @@ export function wgs2GCJ(coord) {
   return [wgLon + deltaD[0], wgLat + deltaD[1]];
 }
 
+/**
+ * transform coordinate from GCJ02 to EPSG:4326
+ * @function
+ * @param {number[]} coord coordinate
+ * @return {number[]} tranformed coordinate
+ * */
 export function gcj2WGS(coord) {
   const glon = coord[0], glat = coord[1];
   if (outOfChina(coord)) {
@@ -209,6 +284,7 @@ function transformLon(x, y) {
 /**
  * add gcj02 and its transformations to openlayers
  * it is added when this module is imported automatically
+ * @function
  * */
 function addGcj02() {
   // Add transformations that don't alter coordinates to convert within set of

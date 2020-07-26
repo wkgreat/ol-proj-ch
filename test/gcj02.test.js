@@ -1,4 +1,4 @@
-import olpjch, {GCJ02} from '../src/proj'
+import olpjch, {GCJ02} from '../src'
 import {transform} from 'ol/proj'
 import should from "should";
 import {GeoJSON} from "ol/format";
@@ -15,9 +15,15 @@ describe("ol-proj-ch gcj02 projection", function () {
       console.log("hello test");
    });
 
-   it("import gcj02",function () {
-      console.log(GCJ02.CODE);
-      console.log(GCJ02.EXTENT);
+   it("import olpjch", function () {
+      should(olpjch).not.undefined();
+      should(olpjch.GCJ02).not.undefined();
+      should(typeof olpjch.GCJ02.toEPSG3857).equals("function");
+      should(olpjch.GCJ02.CODE).equals("GCJ02");
+   });
+
+   it("import GCJ02",function () {
+      should(GCJ02).not.undefined();
       should(GCJ02.CODE).equals("GCJ02");
    });
 
