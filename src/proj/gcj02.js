@@ -186,7 +186,7 @@ export function gcj02WGSExactly(coord) {
   while (true) {
     wgsLat = (mLat + pLat) / 2;
     wgsLon = (mLon + pLon) / 2;
-    const tmp = wgs2GCJ(wgsLat, wgsLon);
+    const tmp = wgs2GCJ([wgsLat, wgsLon]);
     dLat = tmp[0] - gcjLat;
     dLon = tmp[1] - gcjLon;
     if ((Math.abs(dLat) < threshold) && (Math.abs(dLon) < threshold)) {
@@ -241,6 +241,11 @@ export function gcj2WGS(coord) {
   return [glon - deltaD[0], glat - deltaD[1]];
 }
 
+/**
+ * whether a coordinate is nout of area of china
+ * @param {number[]} coord the coordinate
+ * @return {boolean} whether is out of china
+ * */
 export function outOfChina(coord) {
   const lon = coord[0], lat = coord[1];
   if (lon < 72.004 || lon > 137.8347) {
