@@ -1,5 +1,7 @@
 # GCJ02 Projection for OpenLayers
-**Author:** wkgreat
+**Author:** wkgreat  
+[![NPM version](https://img.shields.io/npm/v/ol-proj-ch.svg)](https://www.npmjs.com/package/ol-proj-ch)
+
 
 # Introduction
 GCJ02 is a coordinate systems often used in China. 
