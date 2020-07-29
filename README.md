@@ -1,5 +1,6 @@
 # GCJ02 Projection for OpenLayers
 **Author:** wkgreat  
+![TS](https://img.shields.io/npm/types/ol-proj-ch?style=flat)
 [![NPM version](https://img.shields.io/npm/v/ol-proj-ch.svg)](https://www.npmjs.com/package/ol-proj-ch)
 ![CI](https://github.com/wkgreat/ol-proj-ch/workflows/CI/badge.svg)
 
