@@ -28,3 +28,6 @@ jobs:
     # Runs a single command using the runners shell
     - name: test
       run: npm run test:nowatch
+
+    - name: build
+      run: npm run build
