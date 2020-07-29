@@ -20,51 +20,53 @@ import {
 import {PROJECTIONS as EPSG4326_PROJECTIONS} from 'ol/proj/epsg4326';
 
 import {addEquivalentProjections, addEquivalentTransforms} from 'ol/proj';
+import Units from 'ol/proj/Units';
+/*eslint-disable */
+import {Extent} from 'ol/extent';
+/*eslint-enable */
 
 /**
  * radius of WGS84 ellipsoid
  * @const
  * @type {number}
  * */
-export const RADIUS = 6378137;
+export const RADIUS:number = 6378137;
 
 /**
  * extent of gcj02
  * @const
- * @type {number[]}
+ * @type {ol/Extent}
  * */
-export const EXTENT = [73.62, 18.11, 134.77, 53.56];
+export const EXTENT: Extent = [73.62, 18.11, 134.77, 53.56];
 
 /**
  * coefficient between degree and radian
  * @const
  * @type {number}
  * */
-export const METERS_PER_UNIT = (Math.PI * RADIUS) / 180;
+export const METERS_PER_UNIT:number = (Math.PI * RADIUS) / 180;
 
 /**
  * @classdesc
  * Projection object definition of GCJ02
  * */
 class GCJ02Projection extends Projection {
-
   /**
-   * @constructor
-   * @param {string} code of gcj02
-   * @param {string=} opt_axisOrientation Axis orientation.
-   * */
-  constructor(code, opt_axisOrientation) {
+     * @constructor
+     * @param {string} code of gcj02
+     * @param {string} opt_axisOrientation Axis orientation.
+     * */
+  constructor(code:string, opt_axisOrientation ?:string) {
     super({
       code: code,
-      unit: METERS_PER_UNIT,
+      units: Units.METERS,
       extent: EXTENT,
       axisOrientation: opt_axisOrientation,
-      global: false, //should be in china
+      global: false, // should be in china
       metersPerUnit: METERS_PER_UNIT,
       worldExtent: EXTENT
     });
   }
-
 }
 
 /**
@@ -72,7 +74,7 @@ class GCJ02Projection extends Projection {
  * @const
  * @type {string}
  * */
-export const CODE = 'GCJ02';
+export const CODE:string = 'GCJ02';
 
 /**
  * all code of GCJ02Projection, 'GCJ02', 'GCJ:02' and 'ZH:MARS'
@@ -93,7 +95,7 @@ export const PROJECTIONS = [
  * @param {number} opt_dimension dimension of coordinate
  * @return {number[]} tranformed coordinate
  * */
-export function toEPSG3857(input, opt_output, opt_dimension) {
+export function toEPSG3857(input:number[], opt_output:number[], opt_dimension:number):number[] {
   const the4326 = toEPSG4326(input, opt_output, opt_dimension);
   return from4326to3857(the4326, opt_output, opt_dimension);
 }
@@ -106,10 +108,9 @@ export function toEPSG3857(input, opt_output, opt_dimension) {
  * @param {number} opt_dimension dimension of coordinate
  * @return {number[]} tranformed coordinate
  * */
-export function fromEPSG3857(input, opt_output, opt_dimension) {
+export function fromEPSG3857(input:number[], opt_output:number[], opt_dimension:number): number[] {
   const the4326 = from3857to4326(input, opt_output, opt_dimension);
   return fromEPSG4326(the4326, opt_output, opt_dimension);
-
 }
 
 /**
@@ -120,10 +121,10 @@ export function fromEPSG3857(input, opt_output, opt_dimension) {
  * @param {number} opt_dimension dimension of coordinate
  * @return {number[]} tranformed coordinate
  * */
-export function toEPSG4326(input, opt_output, opt_dimension) {
+export function toEPSG4326(input:number[], opt_output:number[], opt_dimension:number): number[] {
   const length = input.length;
   const dimension = opt_dimension > 1 ? opt_dimension : 2;
-  let output = opt_output;
+  let output:number[] = opt_output;
   if (output === undefined) {
     if (dimension > 2) {
       // preserve values beyond second dimension
@@ -140,7 +141,6 @@ export function toEPSG4326(input, opt_output, opt_dimension) {
   return output;
 }
 
-
 /**
  * transform coordinate from EPSG:4326 to GCJ02
  * @function
@@ -149,7 +149,7 @@ export function toEPSG4326(input, opt_output, opt_dimension) {
  * @param {number} opt_dimension dimension of coordinate
  * @return {number[]} tranformed coordinate
  * */
-export function fromEPSG4326(input, opt_output, opt_dimension) {
+export function fromEPSG4326(input:number[], opt_output:number[], opt_dimension:number) {
   const length = input.length;
   const dimension = opt_dimension > 1 ? opt_dimension : 2;
   let output = opt_output;
@@ -175,14 +175,14 @@ export function fromEPSG4326(input, opt_output, opt_dimension) {
  * @param {number[]} coord coordinate
  * @return {number[]} tranformed coordinate
  * */
-export function gcj02WGSExactly(coord) {
-  const gcjLon = coord[0], gcjLat = coord[1];
+export function gcj02WGSExactly(coord: number[]): number[] {
+  const gcjLon = coord[0]; const gcjLat = coord[1];
   const initDelta = 0.01;
   const threshold = 0.000000001;
-  let dLat = initDelta, dLon = initDelta;
-  let mLat = gcjLat - dLat, mLon = gcjLon - dLon;
-  let pLat = gcjLat + dLat, pLon = gcjLon + dLon;
-  let wgsLat, wgsLon, i = 0;
+  let dLat = initDelta; let dLon = initDelta;
+  let mLat = gcjLat - dLat; let mLon = gcjLon - dLon;
+  let pLat = gcjLat + dLat; let pLon = gcjLon + dLon;
+  let wgsLat; let wgsLon; let i = 0;
   while (true) {
     wgsLat = (mLat + pLat) / 2;
     wgsLon = (mLon + pLon) / 2;
@@ -217,8 +217,8 @@ export function gcj02WGSExactly(coord) {
  * @param {number[]} coord coordinate
  * @return {number[]} tranformed coordinate
  * */
-export function wgs2GCJ(coord) {
-  const wgLon = coord[0], wgLat = coord[1];
+export function wgs2GCJ(coord:number[]): number[] {
+  const wgLon = coord[0]; const wgLat = coord[1];
   if (outOfChina(coord)) {
     return coord;
   }
@@ -232,8 +232,8 @@ export function wgs2GCJ(coord) {
  * @param {number[]} coord coordinate
  * @return {number[]} tranformed coordinate
  * */
-export function gcj2WGS(coord) {
-  const glon = coord[0], glat = coord[1];
+export function gcj2WGS(coord:number[]):number[] {
+  const glon = coord[0]; const glat = coord[1];
   if (outOfChina(coord)) {
     return coord;
   }
@@ -246,8 +246,8 @@ export function gcj2WGS(coord) {
  * @param {number[]} coord the coordinate
  * @return {boolean} whether is out of china
  * */
-export function outOfChina(coord) {
-  const lon = coord[0], lat = coord[1];
+export function outOfChina(coord:number[]): boolean {
+  const lon = coord[0]; const lat = coord[1];
   if (lon < 72.004 || lon > 137.8347) {
     return true;
   }
@@ -257,8 +257,8 @@ export function outOfChina(coord) {
   return false;
 }
 
-function delta(coord) {
-  const wgLon = coord[0], wgLat = coord[1];
+function delta(coord:number[]): number[] {
+  const wgLon = coord[0]; const wgLat = coord[1];
   let dLat = transformLat(wgLon - 105.0, wgLat - 35.0);
   let dLon = transformLon(wgLon - 105.0, wgLat - 35.0);
   const radLat = wgLat / 180.0 * Math.PI;
@@ -270,7 +270,7 @@ function delta(coord) {
   return [dLon, dLat];
 }
 
-function transformLat(x, y) {
+function transformLat(x:number, y:number): number {
   let ret = -100.0 + 2.0 * x + 3.0 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * Math.sqrt(Math.abs(x));
   ret += (20.0 * Math.sin(6.0 * x * Math.PI) + 20.0 * Math.sin(2.0 * x * Math.PI)) * 2.0 / 3.0;
   ret += (20.0 * Math.sin(y * Math.PI) + 40.0 * Math.sin(y / 3.0 * Math.PI)) * 2.0 / 3.0;
@@ -278,7 +278,7 @@ function transformLat(x, y) {
   return ret;
 }
 
-function transformLon(x, y) {
+function transformLon(x:number, y:number):number {
   let ret = 300.0 + x + 2.0 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * Math.sqrt(Math.abs(x));
   ret += (20.0 * Math.sin(6.0 * x * Math.PI) + 20.0 * Math.sin(2.0 * x * Math.PI)) * 2.0 / 3.0;
   ret += (20.0 * Math.sin(x * Math.PI) + 40.0 * Math.sin(x / 3.0 * Math.PI)) * 2.0 / 3.0;

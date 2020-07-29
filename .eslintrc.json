@@ -3,15 +3,22 @@
         "browser": true,
         "es6": true
     },
-    "extends": "openlayers",
+    "extends": [
+        "openlayers"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "rules": {
-    }
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
+    },
+    "parser": "@typescript-eslint/parser"
 }

@@ -12,6 +12,7 @@ This module defines the GCJ02 as a Projection of openlayers, likewise EPSG:4326 
 ```shell script
 npm install ol-proj-ch
 ```
+💡From version `1.0.3` also support `typescript`
 
 # Import GCJ02:
 ```javascript

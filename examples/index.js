@@ -1,1 +1,1 @@
-import GCJ02 from '../dist/ol-proj-ch'
+import olpjch from "../dist/ol-proj-ch";

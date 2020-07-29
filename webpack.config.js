@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/proj/index.js',
+    entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'ol-proj-ch.js',
@@ -9,19 +9,20 @@ module.exports = {
         libraryTarget: 'umd',
         libraryExport: 'default'
     },
+    devtool: 'inline-source-map',
     mode: "production",
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
+                test: /\.ts$/,
+                exclude: /(node_modules|bower_components|test)/,
                 use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
+                    loader: 'ts-loader'
                 }
             }
         ]
-    }
+    },
+    resolve: {
+        extensions: ['.ts', '.js' ]
+    },
 };
