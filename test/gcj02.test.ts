@@ -8,7 +8,14 @@ import SimpleGeometry from "ol/geom/SimpleGeometry";
 
 const coordsEquals = (c1:number[], c2:number[]): boolean => {
    const diff = Math.abs(c1[0]-c2[0]) + Math.abs(c1[1]-c2[1]);
-   return diff<1E-5;
+   return diff<1E-4;
+};
+
+
+const testData = {
+   gcj02: [117.0,32.0],
+   wgs84: [116.99463083583468,32.002051204744795],
+   e3857: [1.302378273019214E7,3763579.882653693]
 };
 
 describe("ol-proj-ch gcj02 projection", function () {
@@ -33,39 +40,34 @@ describe("ol-proj-ch gcj02 projection", function () {
 
    it("transform coordinates from GCJ02 to WGS84", function () {
 
-      const c1 = GCJ02.gcj2WGS([117,32]);
-      const c2 = transform([117,32], GCJ02.CODE, "EPSG:4326");
-      expect(coordsEquals(c1,c2)).equals(true)
+      const c2 = transform(testData.gcj02, GCJ02.CODE, "EPSG:4326");
+      expect(coordsEquals(testData.wgs84,c2)).equals(true)
 
    });
 
    it("transform coordinates from WGS84 to GCJ02", function () {
 
-      const c1 = GCJ02.wgs2GCJ([117,32]);
-      const c2 = transform([117,32], "EPSG:4326", GCJ02.CODE);
-      expect(coordsEquals(c1,c2)).equals(true)
-
+      const c2 = transform(testData.wgs84, "EPSG:4326", GCJ02.CODE);
+      expect(coordsEquals(testData.gcj02,c2)).equals(true);
    });
 
    it("transform coordinates from GCJ02 to EPSG:3857", function () {
 
-      const c1 = transform(GCJ02.gcj2WGS([117,32]),"EPSG:4326","EPSG:3857");
-      const c2 = transform([117,32], GCJ02.CODE, "EPSG:3857");
-      expect(coordsEquals(c1,c2)).equals(true);
+      const c2 = transform(testData.gcj02, GCJ02.CODE, "EPSG:3857");
+      expect(coordsEquals(testData.e3857,c2)).equals(true);
 
    });
 
    it("transform coordinates from EPSG:3857 to GCJ02", function () {
 
-      const c1 = GCJ02.wgs2GCJ(transform([117,32], "EPSG:3857", "EPSG:4326"));
-      const c2 = transform([117,32], "EPSG:3857", GCJ02.CODE);
-      expect(coordsEquals(c1,c2)).equals(true);
+      const c2 = transform(testData.e3857, "EPSG:3857", GCJ02.CODE);
+      expect(coordsEquals(testData.gcj02,c2)).equals(true);
 
    });
 
    it("geojson data with GCJ02 CRS", function () {
 
-      const coord = [125.6, 10.1];
+      const coord = testData.gcj02;
 
       const data = {
          "type": "Feature",
@@ -74,7 +76,7 @@ describe("ol-proj-ch gcj02 projection", function () {
             "coordinates": coord
          },
          "properties": {
-            "name": "Dinagat Islands"
+            "name": "a_point"
          }
       };
 
@@ -84,16 +86,15 @@ describe("ol-proj-ch gcj02 projection", function () {
          featureProjection: "EPSG:3857"
       });
       expect(feature).not.equals(null);
-      const c1 = transform(GCJ02.gcj2WGS(coord), "EPSG:4326", "EPSG:3857");
       const c2 = (feature.getGeometry() as SimpleGeometry).getFlatCoordinates();
       expect(c2).not.equals(null);
-      expect(coordsEquals(c1,c2)).equals(true)
+      expect(coordsEquals(testData.e3857,c2)).equals(true)
 
    });
 
    it("WKT data with GCJ02 CRS", function () {
 
-      const coord = [125.6, 10.1];
+      const coord = testData.gcj02;
 
       const data = `POINT (${coord[0]} ${coord[1]})`;
       console.log(`WKT: ${data}`);
@@ -105,10 +106,9 @@ describe("ol-proj-ch gcj02 projection", function () {
       });
       console.log(feature);
       expect(feature).not.equals(null);
-      const c1 = transform(GCJ02.gcj2WGS(coord), "EPSG:4326", "EPSG:3857");
       const c2 = (feature.getGeometry() as SimpleGeometry).getFlatCoordinates();
       expect(c2).not.equals(null);
-      expect(coordsEquals(c1,c2)).equals(true)
+      expect(coordsEquals(testData.e3857,c2)).equals(true)
 
    });
 
