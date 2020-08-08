@@ -4,7 +4,7 @@
 [![NPM version](https://img.shields.io/npm/v/ol-proj-ch.svg)](https://www.npmjs.com/package/ol-proj-ch)
 ![CI](https://github.com/wkgreat/ol-proj-ch/workflows/CI/badge.svg)
 
-# Projection Supported 
+# Projection Supported  
 | Projection | code | Description |
 | :----: | :---- | :---- |
 | GCJ02 | 'GCJ02','GCJ:02','ZH:MARS' | 国测局02坐标系，火星坐标系 |
@@ -17,7 +17,7 @@ After processing by GCJ02 algorithm,
 the point defined in WGS84 will be deviated on web map visually.
 This module defines the GCJ02 as a Projection of openlayers, likewise EPSG:4326 and EPSG:3857
 
-💡From version `1.0.3` also support `typescript`
+💡From version `1.0.3` also support `typescript`. 
 
 # Install:
 ```shell script
@@ -25,8 +25,8 @@ npm install ol-proj-ch
 ```
 
 # Import:
-by `import olpjch`, the `olpjch` is defined as a container for all supported projections in this module.
-by `import {xxx} from 'ol-proj-ch'`, import the pertinent projection you want.
+by `import olpjch`, the `olpjch` is defined as a container for all supported projections in this module.  
+by `import {xxx} from 'ol-proj-ch'`, import the pertinent projection you want.  
 ```javascript
 import olpjch from 'ol-proj-ch'
 
@@ -47,7 +47,7 @@ const code2 = BD09.CODE     //the code of BD09
 ```
 
 # Usage:
-💡 here use GCJ02 to make exmaples
+💡 here use GCJ02 to make exmaples. 
 * transform a coordinate from gcj02 to wgs84(EPSG:4326)
 ```javascript
 import {GCJ02} from 'ol-proj-ch'
