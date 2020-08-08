@@ -58,6 +58,11 @@ export const METERS_PER_UNIT:number = (Math.PI * RADIUS) / 180;
  * */
 class BD09Projection extends Projection {
 
+  /**
+   * @constructor
+   * @param {string} code of gcj02
+   * @param {string} opt_axisOrientation Axis orientation.
+   * */
   constructor(code: string, opt_axisOrientation ?: string) {
     super({
       code: code,
@@ -138,6 +143,9 @@ export function fromGcj02(input:number[], opt_output:number[], opt_dimension:num
   return output;
 }
 
+/**
+ * @internal
+ * */
 const XPI = Math.PI * 3000.0 / 180.0;
 
 /**
