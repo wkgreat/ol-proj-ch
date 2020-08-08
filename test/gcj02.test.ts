@@ -5,12 +5,7 @@ import {GeoJSON} from "ol/format";
 import WKT from "ol/format/WKT";
 import Point from "ol/geom/Point";
 import SimpleGeometry from "ol/geom/SimpleGeometry";
-
-const coordsEquals = (c1:number[], c2:number[]): boolean => {
-   const diff = Math.abs(c1[0]-c2[0]) + Math.abs(c1[1]-c2[1]);
-   return diff<1E-4;
-};
-
+import {coordsEquals} from "../src/proj/common";
 
 const testData = {
    gcj02: [117.0,32.0],

@@ -2,7 +2,7 @@
  * GCJ02 Projection on basis of WGS84(EGPS:4326)
  * <p>
  * GCJ02 is not a projection strictly. In fact, it is a
- * confidentail algorithm to offset real coordinate
+ * confidential algorithm to offset real coordinate in China
  *
  * @author Ke Wang (wkgreat@outlook.com)
  *
