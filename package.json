@@ -1,12 +1,13 @@
 {
   "name": "ol-proj-ch",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "china's gcj02 for openlayers",
   "author": "wkgreat",
   "license": "BSD-2-Clause",
   "scripts": {
     "lint:fix": "eslint --fix --ext js,ts,tsx src --max-warnings 5",
     "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
+    "doc": "rimraf ./docs && typedoc --tsconfig tsconfig.json --stripInternal --mode modules --out docs ./src",
     "karma": "karma start ./karma.conf.js",
     "test": "npm run karma --log-level error",
     "test:nowatch": "cross-env CI=true npm run karma -- --single-run --log-level error",
@@ -77,6 +78,7 @@
     "ol": "^6.1.0",
     "rimraf": "^3.0.2",
     "ts-loader": "^8.0.1",
+    "typedoc": "^0.17.8",
     "typescript": "^3.9.7",
     "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12",

@@ -9,6 +9,7 @@
  * </p>
  * */
 
+/*eslint-disable */
 import Projection from 'ol/proj/Projection';
 
 import {
@@ -21,7 +22,6 @@ import {PROJECTIONS as EPSG4326_PROJECTIONS} from 'ol/proj/epsg4326';
 
 import {addEquivalentProjections, addEquivalentTransforms} from 'ol/proj';
 import Units from 'ol/proj/Units';
-/*eslint-disable */
 import {Extent} from 'ol/extent';
 /*eslint-enable */
 

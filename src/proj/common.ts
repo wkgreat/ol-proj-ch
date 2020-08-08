@@ -1,11 +1,11 @@
 /*eslint-disable */
 import {TransformFunction} from 'ol/proj';
-/*eslint-disable */
+/*eslint-enable */
 
 /**
  * whether two coordinates are equivalent
- * @param c1 {number[]} coordinate 1
- * @param c2 {number[]} coordinate 2
+ * @param {number[]} c1 coordinate 1
+ * @param {number[]} c2 coordinate 2
  * @return {boolean} equals or not
  * */
 export const coordsEquals = (c1:number[], c2:number[]): boolean => {
@@ -17,8 +17,8 @@ export const coordsEquals = (c1:number[], c2:number[]): boolean => {
  * transform a coordinate between more than two projection
  * projection1 -(f1)-> projection2 -(f2)-> projection3
  *
- * @param f1 {TransformFunction} the first transform
- * @param f2 {TransformFunction} the sconed transform
+ * @param {TransformFunction} f1 the first transform
+ * @param {TransformFunction} f2 the sconed transform
  * @return {TransformFunction} a new transformation func which can transform a coordinate from projection a to projection b and then projection c
  * */
 export const transformChain = (f1: TransformFunction, f2:TransformFunction) =>

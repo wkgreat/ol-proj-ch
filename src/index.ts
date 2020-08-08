@@ -8,6 +8,10 @@ import {BD09} from './proj';
 export {GCJ02};
 export {BD09};
 
+/**
+ * container object of all available projection
+ * @const
+ * */
 const olpjch = {
   GCJ02,
   BD09
