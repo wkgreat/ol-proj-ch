@@ -1,0 +1,234 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ol-proj-ch</title>
+	<meta name="description" content="Documentation for ol-proj-ch">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">ol-proj-ch</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>ol-proj-ch</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#china39s-projection-for-openlayers" id="china39s-projection-for-openlayers" style="color: inherit; text-decoration: none;">
+					<h1>China&#39;s Projection for OpenLayers</h1>
+				</a>
+				<p><strong>Author:</strong> wkgreat<br><img src="https://img.shields.io/npm/types/ol-proj-ch?style=flat" alt="TS">
+					<a href="https://www.npmjs.com/package/ol-proj-ch"><img src="https://img.shields.io/npm/v/ol-proj-ch.svg" alt="NPM version"></a>
+				<img src="https://github.com/wkgreat/ol-proj-ch/workflows/CI/badge.svg" alt="CI"></p>
+				<a href="#projection-supported" id="projection-supported" style="color: inherit; text-decoration: none;">
+					<h1>Projection Supported</h1>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="center">Projection</th>
+							<th align="left">code</th>
+							<th align="left">Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="center">GCJ02</td>
+							<td align="left">&#39;GCJ02&#39;,&#39;GCJ:02&#39;,&#39;ZH:MARS&#39;</td>
+							<td align="left">国测局02坐标系，火星坐标系</td>
+						</tr>
+						<tr>
+							<td align="center">BD09</td>
+							<td align="left">&#39;BD09&#39;,&#39;BD09&#39;,&#39;baidu&#39;</td>
+							<td align="left">百度坐标系</td>
+						</tr>
+				</tbody></table>
+				<a href="#introduction" id="introduction" style="color: inherit; text-decoration: none;">
+					<h1>Introduction</h1>
+				</a>
+				<p>GCJ02 is a coordinate systems often used in China.
+					Strictly speaking, it is a confidential algorithm for encrypting geopoints.
+					After processing by GCJ02 algorithm,
+					the point defined in WGS84 will be deviated on web map visually.
+				This module defines the GCJ02 as a Projection of openlayers, likewise EPSG:4326 and EPSG:3857</p>
+				<p>💡From version <code>1.0.3</code> also support <code>typescript</code>. </p>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h1>Install:</h1>
+				</a>
+				<pre><code class="language-shell">npm install ol-proj-ch</code></pre>
+				<a href="#import" id="import" style="color: inherit; text-decoration: none;">
+					<h1>Import:</h1>
+				</a>
+				<p>by <code>import olpjch</code>, the <code>olpjch</code> is defined as a container for all supported projections in this module.<br>by <code>import {xxx} from &#39;ol-proj-ch&#39;</code>, import the pertinent projection you want.  </p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> olpjch <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ol-proj-ch&#x27;</span>
+
+<span class="hljs-comment">/* GCJ02 */</span>
+<span class="hljs-keyword">const</span> GCJ02 = olpjch.GCJ02
+<span class="hljs-keyword">const</span> code = GCJ02.CODE
+<span class="hljs-comment">//...</span>
+
+<span class="hljs-comment">/* BD09 */</span>
+<span class="hljs-keyword">const</span> BD09 = olpjch.BD09
+<span class="hljs-keyword">const</span> code = BD09.CODE
+
+<span class="hljs-comment">//or import GCJ02, BD09 or others</span>
+<span class="hljs-keyword">import</span> {GCJ02} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ol-proj-ch&#x27;</span>
+<span class="hljs-keyword">import</span> {BD09} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ol-proj-ch&#x27;</span>
+<span class="hljs-keyword">const</span> code1 = GCJ02.CODE    <span class="hljs-comment">//the code of GCJ02</span>
+<span class="hljs-keyword">const</span> code2 = BD09.CODE     <span class="hljs-comment">//the code of BD09</span></code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h1>Usage:</h1>
+				</a>
+				<p>💡 here use GCJ02 to make exmaples. </p>
+				<ul>
+					<li>transform a coordinate from gcj02 to wgs84(EPSG:4326)<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {GCJ02} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ol-proj-ch&#x27;</span>
+<span class="hljs-keyword">import</span> {transform} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ol/proj&#x27;</span>
+<span class="hljs-keyword">const</span> coords = [<span class="hljs-number">117.0</span>,<span class="hljs-number">32.0</span>];
+<span class="hljs-keyword">const</span> newCoords = transform(coords, GCJ02.CODE, <span class="hljs-string">&quot;EPSG:4326&quot;</span>);</code></pre>
+					likewise, use <code>transform([coords, &quot;EPSG:4326&quot;, GCJ02.CODE)</code> from wgs84 to gcj02</li>
+				</ul>
+				<ul>
+					<li><p>transform a coordinate from gcj02 to EPSG:3857</p>
+						<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {GCJ02} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ol-proj-ch&#x27;</span>
+<span class="hljs-keyword">import</span> {transform} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ol/proj&#x27;</span>
+<span class="hljs-keyword">const</span> coords = [<span class="hljs-number">117.0</span>,<span class="hljs-number">32.0</span>];
+<span class="hljs-keyword">const</span> newCoords = transform(coords, GCJ02.CODE, <span class="hljs-string">&quot;EPSG:3857&quot;</span>);</code></pre>
+						<p>likewise, use <code>transform([coords, &quot;EPSG:3857&quot;, GCJ02.CODE)</code> from EPSG:3827 to gcj02</p>
+					</li>
+					<li><p>eg: create feature from geojson data of GCJ02</p>
+						<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {GCJ02} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ol-proj-ch&#x27;</span>
+<span class="hljs-keyword">import</span> {GeoJSON} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;ol/format&quot;</span>;
+</code></pre>
+					</li>
+				</ul>
+				<p>//geojson data pretend coordinates are in GCJ02
+					const data = {
+					&quot;type&quot;: &quot;Feature&quot;,
+					&quot;geometry&quot;: {
+					&quot;type&quot;: &quot;Point&quot;,
+					&quot;coordinates&quot;: [125.6, 10.1]
+					},
+					&quot;properties&quot;: {
+					&quot;name&quot;: &quot;Dinagat Islands&quot;
+					}
+				};</p>
+				<p>const format = new GeoJSON();
+					let feature = format.readFeature(data, {
+					dataProjection: GCJ02.CODE,
+					featureProjection: &quot;EPSG:3857&quot;
+					});
+				//... then add feature to layer and then add to map</p>
+				<pre><code>* eg: visulaize vector data <span class="hljs-keyword">from</span> wkt <span class="hljs-keyword">with</span> gcj02 data projection
+```<span class="javascript">javascript
+<span class="hljs-keyword">import</span> {GCJ02} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;ol-proj-ch&#x27;</span>
+<span class="hljs-keyword">import</span> WKT <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;ol/format/WKT&quot;</span>;
+
+<span class="hljs-comment">//WKT data</span>
+<span class="hljs-keyword">const</span> data = <span class="hljs-string">`POINT (125.6 10.1)`</span>;
+
+<span class="hljs-keyword">const</span> format = <span class="hljs-keyword">new</span> WKT();
+<span class="hljs-keyword">let</span> feature = format.readFeature(data, {
+   <span class="hljs-attr">dataProjection</span>: GCJ02.CODE,
+   <span class="hljs-attr">featureProjection</span>: <span class="hljs-string">&quot;EPSG:3857&quot;</span>
+});
+<span class="hljs-comment">//... then add feature to layer and then add to map</span></span></code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_proj_bd09_.html">&quot;proj/bd09&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_proj_common_.html">&quot;proj/common&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_proj_gcj02_.html">&quot;proj/gcj02&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
