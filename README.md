@@ -10,6 +10,9 @@
 | GCJ02 | 'GCJ02','GCJ:02','ZH:MARS' | 国测局02坐标系，火星坐标系 |
 | BD09 | 'BD09','BD09','baidu' | 百度坐标系 |
 
+# Document
+https://wkgreat.github.io/ol-proj-ch/
+
 # Introduction
 GCJ02 is a coordinate systems often used in China. 
 Strictly speaking, it is a confidential algorithm for encrypting geopoints.
