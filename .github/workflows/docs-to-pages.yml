@@ -32,6 +32,9 @@ jobs:
       - name: doc 📝
         run: npm run doc
 
+      - name: nojekyll
+        run: touch docs/.nojekyll
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.5.9
         with:
