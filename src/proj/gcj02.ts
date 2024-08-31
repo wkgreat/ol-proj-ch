@@ -21,7 +21,6 @@ import {
 import {PROJECTIONS as EPSG4326_PROJECTIONS} from 'ol/proj/epsg4326';
 
 import {addEquivalentProjections, addEquivalentTransforms} from 'ol/proj';
-import Units from 'ol/proj/Units';
 import {Extent} from 'ol/extent';
 /*eslint-enable */
 
@@ -59,7 +58,7 @@ class GCJ02Projection extends Projection {
   constructor(code:string, opt_axisOrientation ?:string) {
     super({
       code: code,
-      units: Units.METERS,
+      units: 'm',
       extent: EXTENT,
       axisOrientation: opt_axisOrientation,
       global: false, // should be in china
